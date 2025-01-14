@@ -1,0 +1,83 @@
+/* Ensure table and its content fits properly */
+.ql-table-better {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    /* Ensure the table layout adapts properly to the page */
+}
+
+.ql-table-better td,
+.ql-table-better th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    word-wrap: break-word;
+    /* Handle long words and prevent overflow */
+    overflow-wrap: break-word;
+}
+
+/* Adjust for media (printed and screen) */
+@media print {
+
+    /* Ensure tables don't overflow and fit within the page */
+    .ql-table-better {
+        width: 100%;
+        table-layout: fixed;
+        /* Ensure the table fits within the width */
+    }
+
+    /* Fix large multimedia content */
+    .ql-table-better img,
+    .ql-table-better iframe {
+        max-width: 100%;
+        /* Ensure images and iframes scale within the table */
+        height: auto;
+    }
+
+    /* Prevent tables from overflowing and ensure they fit within the page */
+    .ql-table-better {
+        page-break-inside: avoid;
+    }
+
+    /* Ensure the text and layout inside paragraphs or nested elements are handled */
+    .ql-table-better p,
+    .ql-table-better strong,
+    .ql-table-better em,
+    .ql-table-better u,
+    .ql-table-better s {
+        font-size: 14px;
+        /* Ensures proper text size while printing */
+        line-height: 1.6;
+    }
+
+    /* Nested tags handling */
+    .ql-table-better span,
+    .ql-table-better div,
+    .ql-table-better ul,
+    .ql-table-better ol {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+}
+
+/* General responsive styles */
+@media all {
+    .ql-table-better {
+        word-wrap: break-word;
+    }
+
+    .ql-align-center {
+        text-align: center;
+    }
+
+    .ql-align-right {
+        text-align: right;
+    }
+
+    .ql-align-justify {
+        text-align: justify;
+    }
+
+    .ql-align-left {
+        text-align: left;
+    }
+}
