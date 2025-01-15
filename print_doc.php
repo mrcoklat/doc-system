@@ -23,9 +23,6 @@ $document = SpecificDocument($conn, $id_doc);
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-    <!-- Quill Table Better CSS -->
-    <link rel="stylesheet" href="css/quill-table-better.css" />
 </head>
 <style>
     @page {
@@ -116,22 +113,7 @@ $document = SpecificDocument($conn, $id_doc);
     </div>
     ';
 
-    $top_frame = '<img id="top_frame" src="img/top.png" alt="Top Frame Picture" class="block fixed top-0 w-full">';
-    $bottom_frame = '<img id="bottom_frame" src="img/bottom.png" alt="Bottom Frame Picture" class="block fixed bottom-0 w-full">';
-
-    echo $top_frame;
-    ?>
-
-    <div class="page-container">
-        <div id="content" class="m-auto" style="width: 88%;">
-            <?php echo $header; ?>
-            <?php echo $opening; ?>
-            <?php echo $paragraph; ?>
-            <?php echo $closing; ?>
-            <div class="page-break"></div>
-        </div>
-    </div>
-
+    $footer = '
     <div id="footer">
         <div class="mx-24 w-full fixed bottom-[70px] block">
             <hr class="border-t-2 border-black" style="width: 78%;">
@@ -167,17 +149,34 @@ $document = SpecificDocument($conn, $id_doc);
                     </div>
                 </div>
             </div>
-            <img src="img/bottom_logo.png" alt="Bottom Logo" class="fixed right-10 bottom-[40px] w-1/5"> <!-- Adjusted logo position -->
+            <img src="img/bottom_logo.png" alt="Bottom Logo" class="fixed right-10 bottom-[40px] w-1/5">
+        </div>
+    </div>
+    ';
+
+    $top_frame = '<img id="top_frame" src="img/top.png" alt="Top Frame Picture" class="block fixed top-0 w-full">';
+    $bottom_frame = '<img id="bottom_frame" src="img/bottom.png" alt="Bottom Frame Picture" class="block fixed bottom-0 w-full">';
+
+    echo $top_frame;
+    ?>
+
+    <div class="page-container">
+        <div id="content" class="m-auto" style="width: 88%;">
+            <?php echo $header; ?>
+            <?php echo $opening; ?>
+            <?php echo $paragraph; ?>
+            <?php echo $closing; ?>
+            <div class="page-break"></div>
         </div>
     </div>
 
     <?php
-    echo $bottom_frame;
+        echo $footer;
+        echo $bottom_frame;
     ?>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-
         window.print();
     });
 </script>
