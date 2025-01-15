@@ -54,30 +54,12 @@ $document = SpecificDocument($conn, $id_doc);
             page-break-before: auto;
         }
 
-        .footer {
-            position: fixed;
-            bottom: 70px; /* Footer positioned 70px from the bottom (20px added) */
-            left: 0;
-            width: 100%;
-            height: auto;
-        }
-    }
-
-    /* Hide page breaks for screen */
-    @media all {
-        .page-break {
-            display: none;
-        }
     }
 
     .custom-header {
         font-family: 'Trebuchet MS', sans-serif;
     }
-
-    /* Add margin to the content to account for the footer */
-    #content {
-        margin-bottom: 110px; /* Adjust this value based on footer height + spacing */
-    }
+    
 </style>
 
 <body>
@@ -98,18 +80,15 @@ $document = SpecificDocument($conn, $id_doc);
 
     $opening = '
     <div id="opening">
-        <div class="mt-16 flex justify-between">
+        <div class="mt-16 mb-5 flex justify-between">
             <div>' . $document['name'] . '</div>
             <div>' . Format_Date($document['date']) . '</div>
         </div>
         
-        <br>' . commaOnce($document['salutation']) . '<br>
+        <div class="mb-5">' . commaOnce($document['salutation']) . '</div>
         
-        <br>
-
-        <div class="font-bold">' 
+        <div class="font-bold mb-5">' 
             . $document['title'] . '
-            <br><br>
         </div>
     </div>
     ';
@@ -122,31 +101,29 @@ $document = SpecificDocument($conn, $id_doc);
 
     $closing = '
     <div id="closing">
-        <br><br>' . 
-            commaOnce($document['closing']) . '<br><br><br>
-                <div class="w-[' . $hrWidth . '%]">
-                    <hr class="border-t-1 border-black">
-                    <div class="text-center">
-                        <div class="flex justify-between">
-                            <span>(</span>
-                            <span>' . $document['name'] . '</span>
-                            <span>)</span>
-                        </div>
-                    </div>
-                </div>
-                Finance' . 
-        '<br><br>
+        <div class="mt-7 mb-7">' . 
+            commaOnce($document['closing']) . '
+        </div>
+        <div class="w-[' . $hrWidth . '%]">
+            <hr class="border-t-1 border-black">
+            <div class="text-center flex justify-between">
+                <span>(</span>
+                <span>' . $document['name'] . '</span>
+                <span>)</span>
+            </div>
+            Finance
+        </div>
     </div>
     ';
 
-    $top_frame = '<img src="img/top.png" alt="Top Frame Picture" class="fixed top-0 w-full">';
-    $bottom_frame = '<img src="img/bottom.png" alt="Bottom Frame Picture" class="fixed bottom-0 w-full">';
+    $top_frame = '<img id="top_frame" src="img/top.png" alt="Top Frame Picture" class="block fixed top-0 w-full">';
+    $bottom_frame = '<img id="bottom_frame" src="img/bottom.png" alt="Bottom Frame Picture" class="block fixed bottom-0 w-full">';
 
     echo $top_frame;
     ?>
 
     <div class="page-container">
-        <div id="content" class="m-auto" style="width: 88%; overflow: hidden;">
+        <div id="content" class="m-auto" style="width: 88%;">
             <?php echo $header; ?>
             <?php echo $opening; ?>
             <?php echo $paragraph; ?>
@@ -155,8 +132,8 @@ $document = SpecificDocument($conn, $id_doc);
         </div>
     </div>
 
-    <div class="footer">
-        <div class="mx-24 w-full fixed bottom-[70px]"> <!-- Adjusted footer position -->
+    <div id="footer">
+        <div class="mx-24 w-full fixed bottom-[70px] block">
             <hr class="border-t-2 border-black" style="width: 78%;">
             <div class="mt-2 px-3" style="width: 78%;">
                 <div class="w-full">
@@ -199,54 +176,10 @@ $document = SpecificDocument($conn, $id_doc);
     ?>
 
 <script>
-    window.onload = function () {
-        const content = document.getElementById('content');
-        const footer = document.querySelector('.footer');
-        const header = document.getElementById('header');
-        const pageHeight = window.innerHeight; // Full page height
-        const footerHeight = footer.offsetHeight + 20; // Add 20px to footer height
-        const headerHeight = header.offsetHeight; // Dynamically calculated header height
-        const availableHeight = pageHeight - footerHeight - headerHeight; // Height excluding header/footer
-        let currentHeight = 0;
+    document.addEventListener('DOMContentLoaded', function () {
 
-        const components = [
-            document.getElementById('opening'),
-            document.getElementById('paragraph'),
-            document.getElementById('closing'),
-        ];
-
-        components.forEach((component, index) => {
-            const componentHeight = component.offsetHeight;
-
-            if (currentHeight + componentHeight > availableHeight) {
-                const remainingHeight = availableHeight - currentHeight;
-                const spacer = document.createElement('div');
-                spacer.classList.add('page-break');
-                spacer.style.height = `${remainingHeight}px`;
-                content.insertBefore(spacer, component); // Add page break before content
-
-                // Move remaining content to the next page
-                const nextPage = document.createElement('div');
-                nextPage.classList.add('page-break');
-                content.appendChild(nextPage);
-
-                currentHeight = 0;
-            }
-
-            currentHeight += componentHeight;
-
-            if (currentHeight > availableHeight) {
-                const remainingHeight = availableHeight - currentHeight;
-                const spacer = document.createElement('div');
-                spacer.classList.add('page-break');
-                spacer.style.height = `${remainingHeight}px`;
-                content.appendChild(spacer); // Add page break if remaining content is too large
-            }
-        });
-
-        // Print after layout adjustments
         window.print();
-    };
+    });
 </script>
 
 </body>
