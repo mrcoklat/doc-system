@@ -25,7 +25,9 @@
         [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
         ["link", "image", "video"],
         [{ align: [] }],
-        ['table-better']
+        ['table-better'],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],
+        [{ 'size': ['small', false, 'large', 'huge'] }]
     ];
 
     const quill = new Quill('#editor-container', {

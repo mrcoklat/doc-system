@@ -1,83 +1,140 @@
-/* Ensure table and its content fits properly */
+/* General paragraph styles */
+p {
+    margin: 0 0 1em;
+    line-height: 1.6;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+}
+
+/* Indentation styles */
+.ql-indent-1 {
+    margin-left: 40px;
+    /* Indents by 40px */
+}
+
+/* Bold text */
+strong {
+    font-weight: bold;
+}
+
+/* Italic text */
+em {
+    font-style: italic;
+}
+
+/* Underlined text */
+u {
+    text-decoration: underline;
+}
+
+/* Strikethrough text */
+s {
+    text-decoration: line-through;
+}
+
+/* Ordered and unordered lists */
+ol[data-list="ordered"] {
+    list-style-type: decimal;
+    margin: 0 0 1em 40px;
+}
+
+ol[data-list="bullet"] {
+    list-style-type: disc;
+    margin: 0 0 1em 40px;
+}
+
+ol[data-list="unchecked"] {
+    list-style-type: none;
+    margin: 0 0 1em 40px;
+}
+
+ol[data-list="unchecked"] li::before {
+    content: '☐';
+    margin-right: 10px;
+}
+
+ol[data-list="checked"] {
+    list-style-type: none;
+    margin: 0 0 1em 40px;
+}
+
+ol[data-list="checked"] li::before {
+    content: '☑';
+    margin-right: 10px;
+}
+
+/* Links */
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1em 0;
+}
+
+/* Video iframes */
+.ql-video {
+    width: 100%;
+    height: 315px;
+    margin: 1em 0;
+    border: none;
+}
+
+/* Text alignment */
+.ql-align-center {
+    text-align: center;
+}
+
+.ql-align-right {
+    text-align: right;
+}
+
+.ql-align-justify {
+    text-align: justify;
+}
+
+/* Font sizes */
+.ql-size-small {
+    font-size: 12px;
+}
+
+.ql-size-large {
+    font-size: 20px;
+}
+
+.ql-size-huge {
+    font-size: 28px;
+}
+
+/* Table styles */
 .ql-table-better {
     width: 100%;
     border-collapse: collapse;
+    margin: 1em 0;
     table-layout: fixed;
-    /* Ensure the table layout adapts properly to the page */
 }
 
-.ql-table-better td,
-.ql-table-better th {
+.ql-table-better td {
     border: 1px solid #ccc;
-    padding: 8px;
-    word-wrap: break-word;
-    /* Handle long words and prevent overflow */
-    overflow-wrap: break-word;
+    padding: 10px;
+    vertical-align: top;
 }
 
-/* Adjust for media (printed and screen) */
-@media print {
-
-    /* Ensure tables don't overflow and fit within the page */
-    .ql-table-better {
-        width: 100%;
-        table-layout: fixed;
-        /* Ensure the table fits within the width */
-    }
-
-    /* Fix large multimedia content */
-    .ql-table-better img,
-    .ql-table-better iframe {
-        max-width: 100%;
-        /* Ensure images and iframes scale within the table */
-        height: auto;
-    }
-
-    /* Prevent tables from overflowing and ensure they fit within the page */
-    .ql-table-better {
-        page-break-inside: avoid;
-    }
-
-    /* Ensure the text and layout inside paragraphs or nested elements are handled */
-    .ql-table-better p,
-    .ql-table-better strong,
-    .ql-table-better em,
-    .ql-table-better u,
-    .ql-table-better s {
-        font-size: 14px;
-        /* Ensures proper text size while printing */
-        line-height: 1.6;
-    }
-
-    /* Nested tags handling */
-    .ql-table-better span,
-    .ql-table-better div,
-    .ql-table-better ul,
-    .ql-table-better ol {
-        font-size: 14px;
-        line-height: 1.6;
-    }
+.ql-table-block {
+    margin: 0;
 }
 
-/* General responsive styles */
-@media all {
-    .ql-table-better {
-        word-wrap: break-word;
-    }
-
-    .ql-align-center {
-        text-align: center;
-    }
-
-    .ql-align-right {
-        text-align: right;
-    }
-
-    .ql-align-justify {
-        text-align: justify;
-    }
-
-    .ql-align-left {
-        text-align: left;
-    }
+/* Placeholder for temporary elements */
+.ql-table-temporary {
+    display: none;
 }
