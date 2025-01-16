@@ -27,22 +27,22 @@ $opening = '
         <div>' . Format_Date($document['date']) . '</div>
     </div>
     
-    <div>' . commaOnce($document['salutation']) . '</div>
+    <div class="mt-5">' . commaOnce($document['salutation']) . '</div>
     
-    <div class="font-bold">' 
+    <div class="mt-5 font-bold">' 
         . $document['title'] . '
     </div>
 </div>
 ';
 
 $paragraph = '
-<div class="text-justify">' 
+<div class="mt-5 text-justify">' 
     . nl2br($document['paragraph']) . '
 </div>
 ';
 
 $closing = '
-<div class="mt-7">
+<div class="mt-5">
     <div class="mb-7">' . 
         commaOnce($document['closing']) . '
     </div>
@@ -124,16 +124,16 @@ body {
 }
 
 @media print {
-    thead {display: table-header-group;} 
-    tfoot {display: table-footer-group;}
-    
-    button {display: none;}
-    
-    body { 
-        margin: 0;
-        display: block;
-        font-family: 'Times New Roman', Times, serif, sans-serif;
-    }
+  thead {display: table-header-group;} 
+  tfoot {display: table-footer-group;}
+  
+  button {display: none;}
+  
+  body { 
+      margin: 0;
+      display: block;
+      font-family: 'Times New Roman', Times, serif, sans-serif;
+  }
 }
 </style>
 
@@ -144,8 +144,8 @@ body {
   </div>
 
   <div class="page-footer">
-    <div class="mx-24 w-full fixed bottom-[70px] block">
-        <hr class="border-t-2 border-black" style="width: 78%;">
+    <div class="mx-24 w-full fixed bottom-[70px] text-center">
+        <hr class="border-t-2 border-black" style="width: 77%;">
         <div class="mt-2 px-3" style="width: 78%;">
             <div class="w-full">
                 <div class="flex justify-between">
