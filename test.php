@@ -11,7 +11,7 @@ $nameWidth = strlen($document['name']);
 $hrWidth = min(max(20, $nameWidth + 10), 35);
 
 $header = '
-<div class="custom-header mt-5 flex items-center space-x-4">
+<div class="custom-header flex items-center space-x-4">
     <img src="img/top_logo.png" class="border-2 border-black" alt="Company Logo" width="150">
     <div>
         <h1 class="text-3xl font-bold">COMPANY NAME</h1>
@@ -40,6 +40,8 @@ $paragraph = '
     . nl2br($document['paragraph']) . '
 </div>
 ';
+
+$paragraph = str_replace('<iframe', '<iframe style="width: auto; height: auto;"', $paragraph);
 
 $closing = '
 <div class="mt-5">
@@ -84,19 +86,19 @@ $closing = '
 /* Styles go here */
 
 body {
-    display: none;
+  display: none;
 }
 
 .custom-header {
-    font-family: 'Trebuchet MS', sans-serif;
+  font-family: 'Trebuchet MS', sans-serif;
 }
 
 .page-header, .page-header-space {
-  height: 110px;
+  height: 125px;
 }
 
 .page-footer, .page-footer-space {
-  height: 140px;
+  height: 139px;
 }
 
 .page-footer {
@@ -104,7 +106,6 @@ body {
   bottom: 0;
   width: 100%;
   border-top: 1px solid black; /* for demo */
-  background: yellow; /* for demo */
 }
 
 .page-header {
@@ -112,11 +113,10 @@ body {
   top: 0mm;
   width: 100%;
   border-bottom: 1px solid black; /* for demo */
-  background: yellow; /* for demo */
 }
 
 .page {
-  page-break-after: always;
+  page-break-before: always;
 }
 
 @page {
@@ -126,13 +126,17 @@ body {
 @media print {
   thead {display: table-header-group;} 
   tfoot {display: table-footer-group;}
-  
-  button {display: none;}
-  
+    
   body { 
-      margin: 0;
-      display: block;
-      font-family: 'Times New Roman', Times, serif, sans-serif;
+    margin: 0;
+    display: block;
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+  }
+
+  /* Ensure links inside paragraphs are blue */
+  p a {
+    color: #007BFF;
+    text-decoration: none;
   }
 }
 </style>
